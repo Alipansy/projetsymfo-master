@@ -11,9 +11,7 @@
 {{form_row(inscription.pseudo , {
    label : 'pseudo'
 })}}
-{{form_row(inscription.password , {
-   label : 'mot de passe'
-})}}
+{{form_row(inscription.plainPassword)}}
 {{form_row(inscription.nom , {
    label : 'nom'
 })}}
@@ -26,7 +24,7 @@
 {{form_row(inscription.civilite , {
    label : 'civilité'
 })}}
-{{form_row(inscription.plainPassword)}}
+
 
 
 <button type="submit" class="btn btn-info mt-4 mb-20 col-6 " >Enregistrer</button>

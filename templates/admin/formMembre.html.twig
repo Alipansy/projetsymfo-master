@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Edit Utilisateur{% endblock %}
+
+
+{% block body %}
+    
+
+<h1 class="text-center my-3">
+
+Modification du role d'un usager
+
+    </h1>
+
+<div class="container">
+{{form_start(form, {
+    attr: {
+        novalidate: 'novalidate'
+    }
+})}}
+{{ form_row(form.Roles) }}
+
+
+<button type="submit" class="btn btn-secondary">modifier</button>
+
+
+
+{{form_end(form)}}</div>
+
+<div>
+    <a href="">Voir le profil de l'utilisateur <i class="bi bi-eye"></i></a>
+</div>
+
+
+{% endblock %}

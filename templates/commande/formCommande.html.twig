@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Passer une commande{% endblock %}
+
+
+{% block body %}
+    
+
+<h1 class="text-center my-3">
+
+On part quand ? 
+
+    </h1>
+
+<div class="container">
+{{form_start(form, {
+    attr: {
+        novalidate: 'novalidate'
+    }
+})}}
+{{ form_row(form.date_heure_depart) }}
+{{ form_row(form.date_heure_fin) }}
+
+
+
+
+<button type="submit" class="btn btn-secondary">Reserver</button>
+
+
+
+{{form_end(form)}}</div>
+
+
+
+ {% endblock %} 

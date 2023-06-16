@@ -29,6 +29,8 @@ class InscriptionController extends AbstractController
         $form = $this->createForm(InscriptionType::class, $membre);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $membre->setDateEnregistrement(new \DateTime); 
             $membre->setPassword(
                 $membrePasswordHasher->hashPassword(
                     $membre,

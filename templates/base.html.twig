@@ -46,7 +46,8 @@
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="{{ path('admin_vehicule') }}">Gestion des véhicules</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#">Gestion des utilisateurs</a>
+									<a class="dropdown-item" href="{{ path('admin_membre') }}">Gestion des utilisateurs</a>
+									
 									<div class="dropdown-divider"></div>
 									
 								</div>
@@ -66,48 +67,40 @@
 
 
 		{% block body %}
-		<div id="carouselExample" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{{ asset('img/voiture.jpeg') }}" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-  </div>
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden"></span>
-  </button>
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden"></span>
-  </button>
-</div>
+		
+		<h1>Bienvenue sur Agence Log ! </h1>
 
 <div class="container mt-5">
     <div class="row justify-content-evenly">
-    {% for item in vehicule %}
+    {% for vehicules in vehicule %}
     <div class="col-md-4">
     <div class="card text-white bg-dark h-100">
-        <div style="height:300px;">
-            <img src="<?= UPLOAD . $produit['image']; ?>" alt="" class="rounded-top" style="object-fit:cover;width:100%;height:100%;">
-        </div>
         <div class="card-header"></div>
         <div class="card-body">
-            <h4 class="card-title">{{item.titre}}</h4>
-            <p class="card-text text-end h3">{{item.marque}}</p>
-			<p class="card-text text-end h3">{{item.prix_journalier}}</p>
+            <h4 class="card-title">{{vehicules.titre}}</h4>
+            <p class="card-text text-end h3">{{vehicules.marque}}</p>
+			<p class="card-text text-end h3">{{vehicules.description}}</p>
+			<p class="card-text text-end h3">{{vehicules.photo}}</p>
+			<p class="card-text text-end h3">{{vehicules.prix_journalier}}€</p>
             <div class="text-center my-2">
-                <a href="{{path('admin_vehicule_edit',{id: item.id})}}" class="btn btn-primary">Détails</a>
-                <a href="" class="btn btn-danger">Commander</a>
+                <a href="{{path('admin_vehicule_edit',{id: vehicules.id})}}" class="btn btn-secondary">Détails</a>
+			{% if is_granted('ROLE_ADMIN', 'ROLE_USER') %}
+                <a href="{{path('app_commande', {vehiculeId: vehicules.id})}}" class="btn btn-success">Commander</a>
+			{% else %}
+			 						<a href="{{ path('app_login') }}" class="btn btn-success">Connectez-vous pour commander</a>
+
+			{% endif %}
             </div>
         </div>
     </div> 
     </div>
 	{% endfor %}
 		{% endblock %}
-		
+		<style>
+		h1{
+			text-align: center; 
+			margin : 20px;
+		}
+		</style>
 	</body>
 </html>

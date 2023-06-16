@@ -14,14 +14,13 @@ class Commande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_commande = null;
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Membre $id_membre = null;
 
-    #[ORM\Column]
-    private ?int $id_membre = null;
-
-    #[ORM\Column]
-    private ?int $id_vehicule = null;
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Vehicule $id_vehicule = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_heure_depart = null;
@@ -35,41 +34,31 @@ class Commande
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_enregistrement = null;
 
+    
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdCommande(): ?int
-    {
-        return $this->id_commande;
-    }
-
-    public function setIdCommande(int $id_commande): static
-    {
-        $this->id_commande = $id_commande;
-
-        return $this;
-    }
-
-    public function getIdMembre(): ?int
+    public function getIdMembre(): ?Membre
     {
         return $this->id_membre;
     }
 
-    public function setIdMembre(int $id_membre): static
+    public function setIdMembre(?Membre $id_membre): static
     {
         $this->id_membre = $id_membre;
 
         return $this;
     }
 
-    public function getIdVehicule(): ?int
+    public function getIdVehicule(): ?Vehicule
     {
         return $this->id_vehicule;
     }
 
-    public function setIdVehicule(int $id_vehicule): static
+    public function setIdVehicule(?Vehicule $id_vehicule): static
     {
         $this->id_vehicule = $id_vehicule;
 
@@ -123,4 +112,6 @@ class Commande
 
         return $this;
     }
+
+    
 }

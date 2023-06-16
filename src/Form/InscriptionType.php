@@ -25,7 +25,7 @@ class InscriptionType extends AbstractType
         $builder
             // ->add('id_membre')
             ->add('pseudo')
-            ->add('password')
+            // ->add('password')
             ->add('nom')
             ->add('prenom')
             ->add('email')
