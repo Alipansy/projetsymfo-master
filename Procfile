@@ -1,1 +1,1 @@
-Postdeploy: php bin/console doctrine:migrations:migrate
+Postdeploy: php bin/console doctrine:schema:update --force
